@@ -180,6 +180,9 @@ namespace EcoTrack.Migrations
                     b.Property<int>("OrganizationId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("SourceType")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Type")
                         .HasColumnType("INTEGER");
 
