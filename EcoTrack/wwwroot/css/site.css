@@ -20,3 +20,62 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Custom Styles for EcoTrack Dashboard */
+
+.dashboard-wrapper {
+  background-color: #fcfdfc; /* Bardzo delikatny odcień bieli/zieleni w tle */
+}
+
+/* Stat Cards Styling */
+.stat-card {
+  border-radius: 12px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Rounded Buttons */
+.rounded-pill {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Custom Success Subtle Badge */
+.bg-success-subtle {
+  background-color: #e7f3ed !important;
+  color: #198754 !important;
+}
+
+/* Action Card Custom Background */
+.main-action-card {
+  border-radius: 16px;
+  background: linear-gradient(to bottom right, #ffffff, #f8fbf9);
+}
+
+/* Activity Feed Styling */
+.list-group-item {
+  border-color: #f1f1f1;
+}
+
+.list-group-item:last-child {
+  border-bottom: 0;
+}
+
+/* Standard Bootstrap success overrides if needed */
+.text-success {
+  color: #198754 !important;
+}
+
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-success:hover {
+  background-color: #157347;
+  border-color: #146c43;
+}

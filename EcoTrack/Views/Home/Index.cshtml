@@ -1,8 +1,93 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model EcoTrack.Models.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid py-4 dashboard-wrapper">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="display-5 fw-bold text-success">Welcome to EcoTrack</h1>
+            <p class="text-muted">Monitor and reduce your carbon footprint in real-time.</p>
+        </div>
+        <a asp-controller="ActivityLogs" asp-action="Create" class="btn btn-success btn-lg shadow-sm px-4 rounded-pill">
+            <i class="bi bi-plus-circle me-2"></i>Add New Activity
+        </a>
+    </div>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted small fw-bold">Total Emissions</h6>
+                    <h2 class="mb-0 fw-bold">@Model.TotalEmissions.ToString("N2") <small class="fs-6 text-muted fw-normal">kg CO₂e</small></h2>
+                    <div class="mt-2 text-muted small">Avg: <span class="fw-bold">@Model.PercentageChange.ToString("N1") kg</span> / log</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted small fw-bold">Top Emission Source</h6>
+                    <h2 class="mb-0 fw-bold text-dark">@Model.TopSource</h2>
+                    <p class="text-muted mb-0 mt-2">Highest contributor</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-muted small fw-bold">Active Sources</h6>
+                    <h2 class="mb-0 fw-bold text-success">@Model.ReductionProgress</h2>
+                    <p class="text-muted mb-0 mt-2">Monitored entities</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card stat-card border-0 shadow-sm h-100 bg-success text-white">
+                <div class="card-body">
+                    <h6 class="text-uppercase text-white-50 small fw-bold">Carbon Offset</h6>
+                    <h2 class="mb-0 fw-bold">@Model.TreesEquivalent Trees</h2>
+                    <p class="mb-0 mt-2 text-white-50">Equivalent absorption</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm p-5 bg-white h-100 main-action-card">
+                <h3 class="fw-bold mb-3">Ready for analysis?</h3>
+                <p class="lead text-muted">Navigate to your activity logs to update today's data or review the latest emission factors for your organization.</p>
+                <div class="d-flex gap-3 justify-content-center mt-4">
+                    <a asp-controller="ActivityLogs" asp-action="Index" class="btn btn-dark px-5 py-2 rounded-pill">Activity Logs</a>
+                    <a asp-controller="EmissionFactors" asp-action="Index" class="btn btn-outline-success px-5 py-2 rounded-pill">Emission Factors</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white border-0 pt-4 px-4">
+                    <h5 class="card-title fw-bold">Recent Activities</h5>
+                </div>
+                <div class="card-body px-4">
+                    <ul class="list-group list-group-flush">
+                        @foreach (var log in Model.RecentLogs)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0 py-3">
+                                <div>
+                                    <p class="mb-0 fw-bold text-dark">@(log.EmissionSource?.Name ?? "Unknown Source")</p>
+                                    <small class="text-muted">@log.Date.ToShortDateString()</small>
+                                </div>
+                                <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-3">@log.CalculatedCo2Emission.ToString("N1") kg</span>
+                            </li>
+                        }
+                    </ul>
+                    <div class="d-grid mt-3">
+                        <a asp-controller="ActivityLogs" asp-action="Index" class="btn btn-sm btn-link text-success text-decoration-none fw-bold">View all activities →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
