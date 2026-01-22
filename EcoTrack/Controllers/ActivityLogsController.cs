@@ -118,7 +118,25 @@ namespace EcoTrack.Controllers
             PopulateDropDowns(activityLog.EmissionSourceId, activityLog.EmissionFactorId);
             return View(activityLog);
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var activityLog = await _context.ActivityLogs
+                .Include(a => a.EmissionSource)
+                .Include(a => a.EmissionFactor)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (activityLog == null)
+            {
+                return NotFound();
+            }
+            
+            return View(activityLog);
+        }
         // GET: ActivityLogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
