@@ -4,51 +4,57 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Edycja</h1>
 
-<h4>ActivityLog</h4>
+<h4>Edytuj aktywność</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Date" class="control-label">Data</label>
+                <input asp-for="Date" class="form-control" type="date" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Quantity" class="control-label"></label>
-                <input asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CalculatedCo2Emission" class="control-label"></label>
-                <input asp-for="CalculatedCo2Emission" class="form-control" />
-                <span asp-validation-for="CalculatedCo2Emission" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EmissionSourceId" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="EmissionSourceId" class="control-label">Źródło</label>
                 <select asp-for="EmissionSourceId" class="form-control" asp-items="ViewBag.EmissionSourceId"></select>
                 <span asp-validation-for="EmissionSourceId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmissionFactorId" class="control-label"></label>
+
+            <div class="form-group mb-3">
+                <label asp-for="EmissionFactorId" class="control-label">Czynnik</label>
                 <select asp-for="EmissionFactorId" class="form-control" asp-items="ViewBag.EmissionFactorId"></select>
                 <span asp-validation-for="EmissionFactorId" class="text-danger"></span>
             </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Quantity" class="control-label">Ilość</label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
+            </div>
+
+            @* Wyświetlamy tylko informacyjnie, bez możliwości edycji (readonly) *@
+            <div class="form-group mb-3">
+                <label class="control-label">Aktualnie wyliczone CO2</label>
+                <input value="@Model.CalculatedCo2Emission" class="form-control" readonly disabled />
+                <small class="text-muted">Wartość zostanie przeliczona ponownie po zapisie.</small>
+            </div>
+
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Zapisz zmiany" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Anuluj</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

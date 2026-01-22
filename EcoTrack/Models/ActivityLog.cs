@@ -22,12 +22,12 @@ namespace EcoTrack.Models
         // Powiązanie ze źródłem
         public int EmissionSourceId { get; set; }
         [ForeignKey("EmissionSourceId")]
-        public virtual EmissionSource EmissionSource { get; set; }
+        public virtual EmissionSource? EmissionSource { get; set; }
 
         // Powiązanie z użytym współczynnikiem
         public int EmissionFactorId { get; set; }
         [ForeignKey("EmissionFactorId")]
-        public virtual EmissionFactor EmissionFactor { get; set; }
+        public virtual EmissionFactor? EmissionFactor { get; set; }
 
         // Metoda biznesowa do przeliczania emisji
         public void CalculateEmission()

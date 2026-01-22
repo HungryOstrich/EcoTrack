@@ -1,51 +1,45 @@
-﻿@model EcoTrack.Models.ActivityLog
+﻿@model EcoTrack.DTOs.ActivityLogDTO
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Usuwanie</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Czy na pewno chcesz usunąć ten wpis?</h3>
 <div>
-    <h4>ActivityLog</h4>
+    <h4>Dziennik Aktywności</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Date)
+        <dt class="col-sm-3">Data</dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.DateFormatted)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class = "col-sm-10">
+
+        <dt class="col-sm-3">Źródło</dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.SourceName)
+        </dd>
+
+        <dt class="col-sm-3">Czynnik</dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.FactorName)
+        </dd>
+
+        <dt class="col-sm-3">Ilość [@Model.Unit]</dt>
+        <dd class="col-sm-9">
             @Html.DisplayFor(model => model.Quantity)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CalculatedCo2Emission)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CalculatedCo2Emission)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmissionSource)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmissionSource.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmissionFactor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmissionFactor.Name)
+
+        <dt class="col-sm-3">Wyliczone CO2</dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.CalculatedCo2)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Usuń" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Powrót do listy</a>
     </form>
 </div>
