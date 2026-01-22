@@ -4,21 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Dziennik Aktywności</h1>
+<h1>Activity Log</h1>
 
 <p>
-    <a asp-action="Create" class="btn btn-primary">Dodaj nowy wpis</a>
+    <a asp-action="Create" class="btn btn-primary">Add new entry</a>
 </p>
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Data</th>
-            <th>Ilość</th>
-            <th>Emisja CO2 (kg)</th>
-            <th>Źródło Emisji</th>
-            <th>Czynnik (Paliwo)</th>
-            <th>Jednostka</th>
-            <th>Akcje</th>
+            <th>Date</th>
+            <th>Quantity</th>
+            <th>Emission CO2 (kg)</th>
+            <th>Emission Source</th>
+            <th>Factor (Fuel)</th>
+            <th>Unit of measure</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -44,9 +44,9 @@
                     @Html.DisplayFor(modelItem => item.Unit)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edytuj</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Szczegóły</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Usuń</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         }

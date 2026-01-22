@@ -4,9 +4,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Dodaj wpis</h1>
+<h1>Add an entry</h1>
 
-<h4>Nowa aktywność</h4>
+<h4>New activity</h4>
 <hr />
 <div class="row">
     <div class="col-md-6">
@@ -14,36 +14,36 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group mb-3">
-                <label asp-for="Date" class="control-label">Data aktywności</label>
+                <label asp-for="Date" class="control-label">Date of activity</label>
                 <input asp-for="Date" class="form-control" type="date" />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label asp-for="EmissionSourceId" class="control-label">Źródło emisji</label>
+                <label asp-for="EmissionSourceId" class="control-label">Emission source</label>
                 <select asp-for="EmissionSourceId" class="form-control" asp-items="ViewBag.EmissionSourceId">
-                    <option value="">-- Wybierz źródło --</option>
+                    <option value="">-- Choose source --</option>
                 </select>
                 <span asp-validation-for="EmissionSourceId" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label asp-for="EmissionFactorId" class="control-label">Rodzaj paliwa/czynnika</label>
+                <label asp-for="EmissionFactorId" class="control-label">Type of fuel/factor</label>
                 <select asp-for="EmissionFactorId" class="form-control" asp-items="ViewBag.EmissionFactorId">
-                    <option value="">-- Wybierz czynnik --</option>
+                    <option value="">-- Choose factor --</option>
                 </select>
                 <span asp-validation-for="EmissionFactorId" class="text-danger"></span>
             </div>
 
             <div class="form-group mb-3">
-                <label asp-for="Quantity" class="control-label">Zużycie</label>
+                <label asp-for="Quantity" class="control-label">Usage</label>
                 <input asp-for="Quantity" class="form-control" />
                 <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Zapisz" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-secondary">Powrót</a>
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to list</a>
             </div>
         </form>
     </div>
